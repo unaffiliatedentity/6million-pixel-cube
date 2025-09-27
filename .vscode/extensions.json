@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",          // Prettier: auto-format code
+    "dbaeumer.vscode-eslint",          // ESLint: linting for JS/TS
+    "bradlc.vscode-tailwindcss",       // Tailwind CSS IntelliSense
+    "prisma.prisma",                   // Prisma syntax + autocomplete
+    "ms-azuretools.vscode-docker",     // Docker (optional, for later)
+    "eamodio.gitlens",                 // GitLens: Git history + blame
+    "github.vscode-pull-request-github", // GitHub integration
+    "formulahendry.auto-rename-tag",   // Auto-rename paired HTML/JSX tags
+    "formulahendry.auto-close-tag",    // Auto-close JSX/HTML tags
+    "dsznajder.es7-react-js-snippets"  // React/Next.js snippets
+  ]
+}

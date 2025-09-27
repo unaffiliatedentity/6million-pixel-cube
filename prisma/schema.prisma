@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String  @id @default(cuid())
+  email     String  @unique
+  createdAt DateTime @default(now())
+  orders    Order[]
+  tiles     Tile[]
+}
+
+model Face {
+  id     Int    @id
+  label  String
+  tiles  Tile[]
+}
+
+model Tile {
+  id        String   @id @default(cuid())
+  faceId    Int
+  ix        Int
+  iy        Int
+  status    TileStatus @default(AVAILABLE)
+  ownerId   String?
+  href      String?
+  title     String?
+  alt       String?
+  assetUrl  String?
+  color     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  face   Face   @relation(fields: [faceId], references: [id])
+  owner  User?  @relation(fields: [ownerId], references: [id])
+
+  @@unique([faceId, ix, iy])
+  @@index([faceId])
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  userId    String
+  status    OrderStatus @default(PENDING)
+  amount    Int
+  currency  String
+  stripeId  String?
+  tiles     TileSelection[]
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model TileSelection {
+  id       String @id @default(cuid())
+  orderId  String
+  faceId   Int
+  ix       Int
+  iy       Int
+
+  order    Order  @relation(fields: [orderId], references: [id])
+
+  @@index([orderId])
+}
+
+enum TileStatus {
+  AVAILABLE
+  PENDING
+  ACTIVE
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELED
+}
