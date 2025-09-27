@@ -1,20 +1,65 @@
 @echo off
-echo === Cleaning node_modules and package-lock.json ===
+echo =========================================
+echo Million Pixel Cube - Dev Helper Script
+echo =========================================
+echo.
+echo Choose an option:
+echo   1. Clean only (remove node_modules, .next, package-lock.json)
+echo   2. Clean + reinstall + run npm dev
+echo   3. Run npm dev only (no cleaning/reinstall)
+echo.
 
-REM Remove node_modules folder
-if exist node_modules (
-  rmdir /s /q node_modules
-  echo Deleted node_modules
+set /p choice="Enter choice (1, 2, or 3): "
+
+:: Option 1 and 2: Cleaning steps
+if "%choice%"=="1" (
+    if exist node_modules (
+        echo Removing node_modules...
+        rmdir /s /q node_modules
+    )
+    if exist package-lock.json (
+        echo Removing package-lock.json...
+        del /f /q package-lock.json
+    )
+    if exist .next (
+        echo Removing .next...
+        rmdir /s /q .next
+    )
+    echo.
+    echo Clean complete. Exiting.
+    goto end
 )
 
-REM Remove package-lock.json
-if exist package-lock.json (
-  del /f /q package-lock.json
-  echo Deleted package-lock.json
+if "%choice%"=="2" (
+    if exist node_modules (
+        echo Removing node_modules...
+        rmdir /s /q node_modules
+    )
+    if exist package-lock.json (
+        echo Removing package-lock.json...
+        del /f /q package-lock.json
+    )
+    if exist .next (
+        echo Removing .next...
+        rmdir /s /q .next
+    )
+    echo.
+    echo Installing dependencies...
+    npm install
+
+    echo.
+    echo Starting dev server...
+    npm run dev
+    goto end
 )
 
-echo === Reinstalling packages ===
-npm install
+if "%choice%"=="3" (
+    echo.
+    echo Starting dev server without cleaning...
+    npm run dev
+    goto end
+)
 
-echo === Done! ===
-pause
+echo Invalid choice. Please run the script again and select 1, 2, or 3.
+
+:end
