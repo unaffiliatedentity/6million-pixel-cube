@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": false,
@@ -17,22 +13,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+
+    "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "*"
-      ]
+      "@/*": ["*"]
     },
-    "typeRoots": [
-      "./types",
-      "./node_modules/@types"
-    ],
-    "allowJs": true
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
   "include": [
     "next-env.d.ts",
@@ -41,10 +28,5 @@
     ".next/types/**/*.ts",
     "types"
   ],
-  "exclude": [
-    "node_modules"
-  ],
-  "files": [
-    "./tsconfig.json"
-  ] // 👈 This stabilizes the path resolution
+  "exclude": ["node_modules"]
 }
