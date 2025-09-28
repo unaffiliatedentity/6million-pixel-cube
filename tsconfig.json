@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": false,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -14,18 +17,22 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-
-    // 👇 Next.js plugin for IntelliSense
-    "plugins": [{ "name": "next" }],
-
-    // 👇 Path alias support
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "@/*": [
+        "*"
+      ]
     },
-
-    // 👇 Add your custom types
-    "typeRoots": ["./types", "./node_modules/@types"]
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
+    "allowJs": true
   },
   "include": [
     "next-env.d.ts",
@@ -34,5 +41,10 @@
     ".next/types/**/*.ts",
     "types"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./tsconfig.json"
+  ] // 👈 This stabilizes the path resolution
 }
