@@ -1,3 +1,4 @@
+import '@/lib/r3f-types-import';
 import "./globals.css";
 import type { Metadata } from "next";
 
